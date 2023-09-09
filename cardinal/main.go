@@ -28,7 +28,7 @@ func main() {
 	// otherwise it will show an error when you try to use them in a system.
 	err := world.RegisterComponents(
 		component.Player,
-		component.Health,
+		component.Likeness,
 	)
 	if err != nil {
 		log.Fatal().Err(err)
@@ -39,7 +39,7 @@ func main() {
 	// otherwise it will show an error when you try to use them in a system.
 	err = world.RegisterTransactions(
 		tx.CreatePlayer,
-		tx.AttackPlayer,
+		tx.UpdateLikeness,
 	)
 	if err != nil {
 		log.Fatal().Err(err)
@@ -60,8 +60,7 @@ func main() {
 	// This is a neat feature that can be strategically used for systems that depends on the order of execution.
 	// For example, you may want to run the attack system before the regen system
 	// so that the player's HP is subtracted (and player killed if it reaches 0) before HP is regenerated.
-	world.AddSystem(system.AttackSystem)
-	world.AddSystem(system.RegenSystem)
+	world.AddSystem(system.UpdateLikenessSystem)
 	world.AddSystem(system.PlayerSpawnerSystem)
 
 	// Load game state

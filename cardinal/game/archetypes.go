@@ -15,6 +15,6 @@ var (
 
 	playerArchetype = IArchetype{
 		Label:      "player",
-		Components: []ecs.IComponentType{component.Player, component.Health},
+		Components: []ecs.IComponentType{component.Player, component.Likeness},
 	}
 )
